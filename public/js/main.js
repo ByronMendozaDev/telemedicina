@@ -73,16 +73,16 @@ function checkInputs() {
 
 	if (signuppasswordValue === '') {
 		setErrorFor(signuppassword, 'Password cannot be blank');
-	} else if (signuppassword.value.match(lowerCaseLetters)) {
+	} else if (!signuppassword.value.match(lowerCaseLetters)) {
 		setErrorFor(signuppassword, 'Check password rules');
-	}else if(signuppassword.value.match(upperCaseLetters)){
+	}else if(!signuppassword.value.match(upperCaseLetters)){
 		setErrorFor(signuppassword, 'Check password rules');
-	}else if(signuppassword.value.match(numbers)){
+	}else if(!signuppassword.value.match(numbers)){
 		setErrorFor(signuppassword, 'Check password rules');
-	} else if(signuppassword.value.length <=8){
+	} else if(signuppassword.value.length < 8){
 		setErrorFor(signuppassword, 'Check password rules');
 	}
-	else {
+	else {		
 		setSuccessFor(signuppassword);
 	}
 
