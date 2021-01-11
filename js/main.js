@@ -1,13 +1,9 @@
-const form = document.getElementById('form');
-const username = document.getElementById('username');
-const email = document.getElementById('email');
-const password = document.getElementById('password');
-const password2 = document.getElementById('password2');
+const sign_in_btn = document.querySelector("#sign-in-btn");
+const sign_up_btn = document.querySelector("#sign-up-btn");
+const container = document.querySelector(".container");
 
-form.addEventListener('submit', e => {
-	e.preventDefault();
-	
-	checkInputs();
+sign_up_btn.addEventListener("click", () => {
+  container.classList.add("sign-up-mode");
 });
 
 sign_in_btn.addEventListener("click", () => {
@@ -76,5 +72,3 @@ function setSuccessFor(input) {
 function isEmail(signupemail) {
 	return /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(signupemail);
 }
-
-
