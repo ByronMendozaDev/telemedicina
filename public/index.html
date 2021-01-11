@@ -162,6 +162,10 @@
 		// Initialize Firebase
 		firebase.initializeApp(firebaseConfig);
 		firebase.analytics();
+
+		//make auth and firestore references
+		const auth = firebase.auth();
+		const db = firebase.firestore();
 	</script>
 	<script src="js/main.js"></script>
 </body>
