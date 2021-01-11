@@ -38,7 +38,7 @@
 						<i class="fas fa-envelope"></i>
 						<i class="fas fa-check-circle"></i>
 						<i class="fas fa-exclamation-circle"></i>
-						<input id="signin-email" type="email" placeholder="Email" /> <br>
+						<input id="signin-email" type="email" placeholder="Email" />
 						<small>Error message</small>
 					</div>
 					<div class="input-field">
@@ -78,9 +78,16 @@
 						<i class="fas fa-lock"></i>
 						<i class="fas fa-check-circle"></i>
 						<i class="fas fa-exclamation-circle"></i>
-						<input id="signup-password" type="password" placeholder="Password" />
+						<input id="signup-password" type="password" placeholder="Password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"/>
 						<small>Error message</small>
 					</div>
+					<div id="message">
+						<h3>Password must contain the following:</h3>
+						<p id="letter" class="invalid">A <b>lowercase</b> letter</p>
+						<p id="capital" class="invalid">A <b>capital (uppercase)</b> letter</p>
+						<p id="number" class="invalid">A <b>number</b></p>
+						<p id="length" class="invalid">Minimum <b>8 characters</b></p>
+					  </div>
 					<div class="input-field">
 						<i class="fas fa-lock"></i>
 						<i class="fas fa-check-circle"></i>
@@ -166,8 +173,11 @@
 		//make auth and firestore references
 		const auth = firebase.auth();
 		const db = firebase.firestore();
+
+		db.settings({ timestampsInSnapshots: true });
 	</script>
 	<script src="js/main.js"></script>
+	<!-- <script src="js/auth.js"></script> -->
 </body>
 
 </html>
