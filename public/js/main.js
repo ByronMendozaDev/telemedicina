@@ -41,12 +41,14 @@ signupform.addEventListener('submit', e => {
 
 	// sign up the user
 	auth.createUserWithEmailAndPassword(email, password).then(cred => {
+		// save user on collection to firebase db
 		return db.collection('users').doc(cred.user.uid).set({
-
+			email: email
 		});
-		console.log(cred.user);		
+				
 	}).then(() => {
-		location.href = 'views/patient.html'
+		// location.href = 'views/patient.html' //redirection to patient view
+		signupform.reset();
 	});
 });
 
