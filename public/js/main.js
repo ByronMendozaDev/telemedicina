@@ -55,6 +55,15 @@ signupform.addEventListener('submit', e => {
 signinform.addEventListener('submit', e => {
 	e.preventDefault();
 	checkInputs();
+
+	// login user
+	const loginemail = signinemail.value;
+	const loginpassword = signinpassword.value;
+	auth.signInWithEmailAndPassword(loginemail,loginpassword).then(cred => {
+		console.log(cred.user)
+	}).then(() => {
+		location.href = 'views/patient.html' //redirection to patient view
+	});
 });
 
 function checkInputs() {
