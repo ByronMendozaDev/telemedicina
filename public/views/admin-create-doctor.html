@@ -4,8 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Patient</title>
+    <title>Create Doctor</title>
     <link rel="stylesheet" href="../css/patient.css">
+    <link rel="stylesheet" href="../css/admin-doctores.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Merienda+One">
@@ -26,7 +27,7 @@
         <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="admin-doctores.html">Doctores</a>
+                    <a class="nav-link" href="#">Doctores</a>
                 </li>
             </ul>
         </div>
@@ -56,23 +57,92 @@
                             src="https://iupac.org/wp-content/uploads/2018/05/default-avatar.png" class="avatar"
                             alt="Avatar"> Paula Wilson <b class="caret"></b></a>
                     <div class="dropdown-menu">
-                        <a href="../views/profile_patient.html" class="dropdown-item"><i class="fa fa-user-o"></i> Profile</a></a>
+                        <a href="../views/profile_patient.html" class="dropdown-item"><i class="fa fa-user-o"></i>
+                            Profile</a></a>
                         <a href="#" class="dropdown-item"><i class="fa fa-calendar-o"></i> Calendar</a></a>
                         <a href="#" class="dropdown-item"><i class="fa fa-sliders"></i> Settings</a></a>
                         <div class="dropdown-divider"></div>
-                        <a id="logout" href="#" class="dropdown-item"><i class="material-icons">&#xE8AC;</i> Logout</a></a>
+                        <a id="logout" href="#" class="dropdown-item"><i class="material-icons">&#xE8AC;</i>
+                            Logout</a></a>
                     </div>
                 </div>
             </ul>
         </div>
     </nav>
+
+    <div class="cotainer">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header">Register Doctor</div>
+                    <div class="card-body">
+                        <form id="signup-form" name="signup-form" method="">
+                            <div class="form-group row">
+                                <label for="full_name" class="col-md-4 col-form-label text-md-right">Full
+                                    Name</label>
+                                <div class="col-md-6">
+                                    <input type="text" id="signup-full_name" class="form-control">
+                                </div>
+                            </div>
+    
+                            <div class="form-group row">
+                                <label for="email_address" class="col-md-4 col-form-label text-md-right">E-Mail
+                                    Address</label>
+                                <div class="col-md-6">
+                                    <input type="email" id="signup-email" class="form-control">
+                                </div>
+                            </div>
+    
+                            <div class="form-group row">
+                                <label for="user_name" class="col-md-4 col-form-label text-md-right">User
+                                    Name</label>
+                                <div class="col-md-6">
+                                    <input type="text" id="signup-user_name" class="form-control">
+                                </div>
+                            </div>
+    
+                            <div class="form-group row">
+                                <label for="phone_number"
+                                    class="col-md-4 col-form-label text-md-right">Password</label>
+                                <div class="col-md-6">
+                                    <input type="password" id="signup-password" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="phone_number" class="col-md-4 col-form-label text-md-right">Repeat
+                                    Password</label>
+                                <div class="col-md-6">
+                                    <input type="password" id="signup-password2" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-md-4 col-form-label text-md-right" for="inlineFormCustomSelect">Preference</label>
+                                <div class="col-md-6">
+                                    <select class="custom-select mr-sm-2 especialities" id="inlineFormCustomSelect">
+                                        <option selected>Choose...</option>
+                                        <option value="1">One</option>
+                                        <option value="2">Two</option>
+                                        <option value="3">Three</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6 offset-md-4">
+                                <button type="submit" class="btn btn-primary">
+                                    Register
+                                </button>
+                            </div>
+                    </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
     <!-- The core Firebase JS SDK is always required and must be listed first -->
     <script src="https://www.gstatic.com/firebasejs/8.2.2/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.2.2/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.2.2/firebase-firestore.js"></script>
 
-    <!-- TODO: Add SDKs for Firebase products that you want to use
- https://firebase.google.com/docs/web/setup#available-libraries -->
+    <!-- TODO: Add SDKs for Firebase products that you want to use https://firebase.google.com/docs/web/setup#available-libraries -->
     <script src="https://www.gstatic.com/firebasejs/8.2.2/firebase-analytics.js"></script>
 
     <script>
@@ -98,6 +168,8 @@
 
         db.settings({ timestampsInSnapshots: true });
     </script>
+    <script src="../js/create-doctor.js"></script>
+    <script src="../js/admin-main.js"></script>
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
         integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
@@ -108,7 +180,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
         crossorigin="anonymous"></script>
-    <script src="../js/admin.js"></script>
+    
     <!-- <script src="../js/main.js"></script> -->
 </body>
 
