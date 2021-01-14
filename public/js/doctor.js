@@ -2,16 +2,6 @@ let editStatus = false;
 let id = '';
 const userEmail = "";
 
-
-Promise.all(
-    auth.onAuthStateChanged(user => {
-        const current_user = user.email;
-        //console.log(current_user);
-        userEmail = current_user
-    })
-)
-
-
 const register_citaform = document.getElementById('cita-form');
 const listar_citas = document.getElementById("listar_citas");
 const logout = document.getElementById("logout");
@@ -58,55 +48,61 @@ const updateCita = (id, updatedCita) => db.collection('citas').doc(id).update(up
 
 window.addEventListener('DOMContentLoaded', async (e) => {
     const querySnapshot = await getCitas;
-    onGetCitas((querySnapshot) => {
-        listar_citas.innerHTML = '';
-
-        querySnapshot.forEach((doc) => {
-            if (doc.data().emailDoctor === user) {
-                //console.log(doc.data())
-                const cita = doc.data();
-                cita.id = doc.id;
-                listar_citas.innerHTML += `
-        <tr>
-            <td>${doc.data().hora}</td>
-            <td>${doc.data().fecha}</td>
-            <td>${doc.data().doctor}</td>
-            <td>
-                <btn data-id="${cita.id}" href="#" class="btn btn-success btn-edit" title="Edit" data-toggle="tooltip">Edit</btn>
-                <btn data-id="${cita.id}" href="admin-especialidad.html" class="btn btn-danger btn-delete" title="Delete" data-toggle="tooltip">Delete</btn>
-            </td>
-        </tr>
-    `;
-                const btnsDelete = document.querySelectorAll('.btn-delete');
-                btnsDelete.forEach(btn => {
-                    btn.addEventListener('click', async (e) => {
-                        // console.log(e.target.dataset.id)
-                        await deleteCita(e.target.dataset.id);
-                    })
-                });
-
-                const btnsEdit = document.querySelectorAll('.btn-edit');
-                btnsEdit.forEach(btn => {
-                    btn.addEventListener('click', async (e) => {
-                        // console.log(e.target.dataset.id)
-                        const doc = await getCita(e.target.dataset.id);
+    auth.onAuthStateChanged((user) => {
+        if(user) {
+            onGetCitas((querySnapshot) => {
+                listar_citas.innerHTML = '';
+        
+                querySnapshot.forEach((doc) => {
+                    if (doc.data().emailDoctor === user.email) {
+                        //console.log(doc.data())
                         const cita = doc.data();
-
-                        editStatus = true;
-                        id = doc.id;
-                        statusCita = "pendiente";
-
-                        register_citaform['cita-hora'].value = cita.hora;
-                        register_citaform['cita-fecha'].value = cita.fecha;
-                        selected_item_doctor.value = cita.doctor;
-                        register_citaform['btn-task-form'].innerText = 'Update';
-                    })
-                })
-            }
-
-
-
-        });
+                        cita.id = doc.id;
+                        listar_citas.innerHTML += `
+                <tr>
+                    <td>${doc.data().hora}</td>
+                    <td>${doc.data().fecha}</td>
+                    <td>${doc.data().doctor}</td>
+                    <td>
+                        <btn data-id="${cita.id}" href="#" class="btn btn-success btn-edit" title="Edit" data-toggle="tooltip">Edit</btn>
+                        <btn data-id="${cita.id}" href="admin-especialidad.html" class="btn btn-danger btn-delete" title="Delete" data-toggle="tooltip">Delete</btn>
+                    </td>
+                </tr>
+            `;
+                        const btnsDelete = document.querySelectorAll('.btn-delete');
+                        btnsDelete.forEach(btn => {
+                            btn.addEventListener('click', async (e) => {
+                                // console.log(e.target.dataset.id)
+                                await deleteCita(e.target.dataset.id);
+                            })
+                        });
+        
+                        const btnsEdit = document.querySelectorAll('.btn-edit');
+                        btnsEdit.forEach(btn => {
+                            btn.addEventListener('click', async (e) => {
+                                // console.log(e.target.dataset.id)
+                                const doc = await getCita(e.target.dataset.id);
+                                const cita = doc.data();
+        
+                                editStatus = true;
+                                id = doc.id;
+                                statusCita = "pendiente";
+        
+                                register_citaform['cita-hora'].value = cita.hora;
+                                register_citaform['cita-fecha'].value = cita.fecha;
+                                selected_item_doctor.value = cita.doctor;
+                                register_citaform['btn-task-form'].innerText = 'Update';
+                            })
+                        })
+                    }
+        
+        
+        
+                });
+            });
+        }
+    
     });
+    
 });
 
