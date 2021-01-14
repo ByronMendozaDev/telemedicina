@@ -54,7 +54,7 @@ window.addEventListener('DOMContentLoaded', async (e) => {
                 listar_citas.innerHTML = '';
         
                 querySnapshot.forEach((doc) => {
-                    if (doc.data().emailDoctor === user.email) {
+                    if (doc.data().doctor === user.displayName) {
                         //console.log(doc.data())
                         const cita = doc.data();
                         cita.id = doc.id;

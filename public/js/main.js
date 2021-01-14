@@ -19,7 +19,6 @@ const number = document.getElementById("number");
 const length = document.getElementById("length");
 
 
-
 const signupform = document.getElementById('signup-form');
 const signinform = document.getElementById('signin-form');
 const signinemail = document.getElementById('signin-email');
@@ -27,6 +26,40 @@ const signupemail = document.getElementById('signup-email');
 const signinpassword = document.getElementById('signin-password');
 const signuppassword = document.getElementById('signup-password');
 const signuppassword2 = document.getElementById('signup-password2');
+const signupusername = document.getElementById('signup-user-name');
+const signupfullname = document.getElementById('signup-full-name')
+
+
+const registrar = (data, e) => {
+
+    const { email, password, displayName, fullname, role} = data;
+
+    auth
+        .createUserWithEmailAndPassword(email, password)
+        .then((result) => {
+            const uid = result.user.uid;
+            result.user.updateProfile({
+                displayName: displayName,
+            });
+            db.collection("users").doc().set({
+                uid,
+                email,
+                fullname,
+                role,
+                username: displayName,
+            });
+            console.log(e);
+        })
+        .catch(function (error) {
+            if (error.code === "auth/email-already-in-use") {
+                alert("El correo ya existe.");
+            } else if (error.code === "auth/weak-password") {
+                alert("Ingrese contraseña");
+            } else {
+                console.log(error);
+            }
+        });
+};
 
 //signup
 signupform.addEventListener('submit', e => {
@@ -37,20 +70,29 @@ signupform.addEventListener('submit', e => {
 	const email = signupemail.value;
 	const password = signuppassword.value;
 	const password2 = signuppassword2.value;
+	const displayName = signupusername.value;
+	const fullname = signupfullname.value;
+	const role = 'patient';
+	const data = {
+		email,
+		password,
+		displayName,
+		fullname,
+		role
+	};
+
 	console.log(email, password, password2);
 
 	// sign up the user
-	auth.createUserWithEmailAndPassword(email, password).then(cred => {
-		// save user on collection to firebase db
-		return db.collection('users').doc(cred.user.uid).set({
-			email: email,
-			role: 'patient'
-		});
+	// auth.createUserWithEmailAndPassword(email, password).then(cred => {
+	// 	// save user on collection to firebase db
+	// 	return db.collection('users').doc(cred.user.uid).set({
+	// 		email: email,
+	// 		role: 'patient'
+	// 	});
 				
-	}).then(() => {
-		// location.href = 'views/patient.html' //redirection to patient view
-		signupform.reset();
-	});
+	registrar(data, e);
+	signupform.reset();
 });
 
 signinform.addEventListener('submit', e => {
