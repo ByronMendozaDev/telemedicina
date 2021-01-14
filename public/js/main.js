@@ -43,7 +43,8 @@ signupform.addEventListener('submit', e => {
 	auth.createUserWithEmailAndPassword(email, password).then(cred => {
 		// save user on collection to firebase db
 		return db.collection('users').doc(cred.user.uid).set({
-			email: email
+			email: email,
+			role: 'patient'
 		});
 				
 	}).then(() => {
