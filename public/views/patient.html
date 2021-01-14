@@ -24,14 +24,7 @@
     <!-- https://www.tutorialrepublic.com/codelab.php?topic=bootstrap&file=all-in-one-navbar -->
     <nav class="navbar navbar-expand-md navbar-light bg-light">
         <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="admin-doctores.html">Doctores</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="admin-especialidad.html">Especialidad</a>
-                </li>
-            </ul>
+            
         </div>
         <div class="mx-auto order-0">
             <a class="navbar-brand mx-auto" href="admin.html">TELEMEDICINA</a>
@@ -41,12 +34,7 @@
         </div>
         <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Right</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Link</a>
-                </li>
+                
                 <!-- <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown"
                         aria-haspopup="true" aria-expanded="false">Dropdown</a>
@@ -78,22 +66,14 @@
                             <div class="form-group row">
                                 <label for="full_name" class="col-md-4 col-form-label text-md-right">Hora</label>
                                 <div class="col-md-6">
-                                    <input type="time" id="cita-hora" class="form-control">
+                                    <input type="text" id="cita-hora" class="form-control" placeholder="HH:MM AM  --- Por ejemplo 08:00 AM">
                                 </div>
                             </div>
 
                             <div class="form-group row">
                                 <label for="email_address" class="col-md-4 col-form-label text-md-right">Fecha</label>
                                 <div class="col-md-6">
-                                    <input type="date" id="cita-fecha" class="form-control">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-md-4 col-form-label text-md-right"
-                                    for="inlineFormCustomSelect">Especialidad</label>
-                                <div class="col-md-6">
-                                    <select class="custom-select mr-sm-2" id="select_especialidad">
-                                    </select>
+                                    <input type="text" id="cita-fecha" class="form-control" placeholder="DD/MM/AAAA">
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -101,6 +81,13 @@
                                     for="inlineFormCustomSelect">Doctor</label>
                                 <div class="col-md-6">
                                     <select class="custom-select mr-sm-2" id="select_doctor">
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="full_name" class="col-md-4 col-form-label text-md-right">Email Doctor</label>
+                                <div class="col-md-6" id="cita-emailDoctor">
+                                    <select class="custom-select mr-sm-2" id="select_doctorEmail">
                                     </select>
                                 </div>
                             </div>
@@ -131,13 +118,11 @@
                         <tr>
                             <th>Hora</th>
                             <th>Fecha</th>
-                            <th>Especialidad</th>
-                            <th>Doctor</th>
-                            <th>Estado</th>
+                            <th>Doctor - Especialidad</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
-                    <tbody id="listar_doctores">
+                    <tbody id="listar_citas">
 
                     </tbody>
                 </table>
