@@ -106,3 +106,42 @@ window.addEventListener('DOMContentLoaded', async (e) => {
     
 });
 
+register_citaform.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    
+        const hora = register_citaform["cita-hora"];
+        const fecha = register_citaform["cita-fecha"];
+        const doctor = selected_doctor;
+        //const uid = user.uid;
+        
+        
+        
+        if (!editStatus) {
+            const data = {
+                hora: hora.value,
+                fecha: fecha.value,
+                doctor: doctor.value,
+                //uid
+            };
+            registrar(data, e);
+            // register_citaform.reset();
+        } else {
+            await updateCita(id, {
+                hora: hora.value,
+                fecha: fecha.value,
+                doctor: doctor.value,
+                // uid,
+            });
+
+            editStatus = false;
+            id ="";
+            register_citaform['btn-task-form'].innerText = "Save";
+        }
+        
+        
+
+        
+    
+
+
+})

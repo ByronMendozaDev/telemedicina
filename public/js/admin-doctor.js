@@ -177,16 +177,17 @@ register_especialityform.addEventListener("submit", async (e) => {
     const password = register_especialityform["signup-password"];
     const especialidad = signupespecialidad;
 
-    const data = {
-        email: register_especialityform["signup-email"].value,
-        fullname: register_especialityform["signup-full_name"].value,
-        username: register_especialityform["signup-user_name"].value,
-        password: register_especialityform["signup-password"].value,
-        especialidad: signupespecialidad.value,
-        role,
-    };
+    
 
     if (!editStatus) {
+        const data = {
+            email: register_especialityform["signup-email"].value,
+            fullname: register_especialityform["signup-full_name"].value,
+            username: register_especialityform["signup-user_name"].value,
+            password: register_especialityform["signup-password"].value,
+            especialidad: signupespecialidad.value,
+            role,
+        };
         registrar(data, e);
         // await registerUserDoctor(email.value, password.value, fullname.value);
         // console.log(password.value);
